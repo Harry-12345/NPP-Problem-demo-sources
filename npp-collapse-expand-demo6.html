@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="cookie-demo.js"></script>
+  <title>Demo</title>
+</head>
+<body>
+   
+<script>"use strict";
+
+try{
+  var dummy = 42;
+}
+catch (e) { 
+  alert("the Answer is 42");
+}
+  // do some editing (insert/delete blanks) in this line to make the node at line 20 appear!
+  
+function explain(){
+    document.writeln("This function cannot be collapsed immediately after expanding the script-node in line 10.<br/>");
+    document.writeln("Edit line 18 to make a collapse icon visible for this function<br/>");
+    document.writeln("Try collapsing and expanding the node in line 10 to make the node at line 20 disappear again.<br/>");
+    document.writeln("Note: Collapsing this function will not yield the correct result: The script-node at line 10 will collapse instead.<br/>");
+}
+explain();
+ 
+///////////////////////////////////////////////////////////////////////////////////////////
+// Some 30 lines of junk below this line. Must be present, otherwise problem will diappear
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function ConstructCell() {
+  this.isBomb = false;         // Is the cell a bomb?
+  this.isRevealed = false;     // Is it revealed?
+  this.isFlagged = false;      // Does it have a bomb flag on it? (in case of disarmed bomb****
+  this.isQuestion = false;     // Question mark (if its used)
+  this.isDisarmed = false;     // Disarm (undo) used after hitting the bomb
+  this.isScheduled = false;    // Used for (pseudo-)recursive revealing. Cell already scheduled.
+                               // Used to prevent multiple scheduling of same cell.
+  this.neighborBombs = 0; }    // Number of bombs surrounding this cell. (0..8)
+
+
+// Variables used & reset during play
+var 
+gameOver = false,
+bombsFlagged = 0,          // Number of bombs flagged so far. (Counts flags on unrevealed cells and flags on revealed (disarmed) bombs)
+cellsRevealed = 0;         // Number of cells revealed so far. (NOTE: Disarmed Bombs are in fact (shown as) revealed, but are internally not regarded as revealed cells.)
+
+var lastClickOnMenu = false;  // Used to control smooth menu closing
+
+var paused = false;           // Game in Pause
+
+// Vars for the clock time
+var
+clockRunning  = false,     // Is it running, (i.e. tic expected)?
+clockTics     = 0;         // Clock ticks every 100ms
+
+// Undo/disarm clock variables
+var
+fuseBurning = false,       // did the user hit a bomb, waiting to see if they want to "undo"
+fuseRemaining = 0,         // Time left to disarm (undo) hitting a bomb
+disarmX = 0,               // x-pos of bomb to be disarmed
+disarmY = 0;               // y-pos of bomb to be disarmed
+
+
+</script>
+
+</body>
+</html>
